@@ -1,0 +1,22 @@
+﻿@page
+@model WebApplication1.Pages.Tasks.TasksModel
+@using WebApplication1.Models
+@{
+    ViewData["Title"] = "Список задач";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+
+    <table class="table">
+        <thead>
+            <tr><th>Id</th><th>Название</th><th>Описание</th><th>Дедлайн</th><th>Прикрепленный файл</th><th>CSV</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.DisplayedTasks)
+            {
+                <tr><td>@task.Id</td><td>@task.Name</td><td>@task.Description</td><td>@task.Deadline</td><td><a href="~/File/DownloadAttachedFile/@task.Id">@task.FileName</a></td><td><a href="~/File/Download/@task.Id">CSV</a></td></tr>
+            }
+        </tbody>
+    </table>
+<a href ="~/File/DownloadAllTasks">Скачать CSV файл с информацией о всех задачах</a>

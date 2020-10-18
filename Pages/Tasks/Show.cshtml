@@ -1,0 +1,45 @@
+﻿@page
+@model WebApplication1.Pages.Tasks.ShowModel
+
+@{
+    ViewData["Title"] = "Show";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Show</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.task[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.task[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.task[0].Deadline)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.task) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
