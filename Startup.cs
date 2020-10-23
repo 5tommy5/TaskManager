@@ -26,6 +26,8 @@ namespace WebApplication1
         {
             
             services.AddControllersWithViews();
+            // Строка подключения 
+            // DefaultConnection прописан в appsettings.json
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
             services.AddRazorPages();
@@ -34,6 +36,8 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Проверка ли находится проект на стадии разработки
+            // Если на стадии разработки - показывать ексепшены
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,7 +55,7 @@ namespace WebApplication1
 
             app.UseAuthorization();
 
-
+            // Добавление роутинга на странице
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
